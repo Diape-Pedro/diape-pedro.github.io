@@ -82,6 +82,14 @@ const TRABALHOS = [
     video: "assets/3d/transicao-logo.mp4",
   },
   {
+    titulo: "Transição “Penas”",
+    categoria: "transicao",
+    descricao: "Transição de cena para lives verticais: uma revoada de penas sobe e cobre a tela na troca de cena.",
+    ferramentas: ["Blender", "OBS Studio"],
+    video: "assets/3d/transicao-penas.mp4",
+    imagem: "assets/3d/transicao-penas.jpg",
+  },
+  {
     titulo: "Linhas e bolinhas",
     categoria: "transicao",
     descricao: "Fundo animado em loop: uma grade de linhas e pontos que acendem em vermelho neon.",
