@@ -1,49 +1,67 @@
 // Monta os cards de trabalhos a partir de conteudo.js
+// (textos no idioma escolhido: tr() e campo() vêm de idiomas.js)
 const grade = document.getElementById("grade-trabalhos");
 const lightbox = document.getElementById("lightbox");
 const lbImg = lightbox.querySelector("img");
 const lbLegenda = lightbox.querySelector(".lb-legenda");
 let lbLista = [];
 let lbIndice = 0;
-const NOMES = { "3d": "3D", transicao: "Motion para live", edicao: "Edição" };
+let filtroAtual = "todos";
 
-TRABALHOS.forEach((t) => {
-  const card = document.createElement("article");
-  card.className = "card" + (t.falta ? " card-falta" : "");
-  card.dataset.categoria = t.categoria;
+// Vídeos só tocam quando aparecem na tela (economiza bateria e dados)
+const observador = new IntersectionObserver((entradas) => {
+  entradas.forEach((e) => {
+    if (e.isIntersecting) e.target.play().catch(() => {});
+    else e.target.pause();
+  });
+}, { threshold: 0.3 });
 
-  let midia;
-  if (t.youtube) {
-    midia = `<iframe src="https://www.youtube-nocookie.com/embed/${t.youtube}" title="${t.titulo}" allowfullscreen loading="lazy"></iframe>`;
-  } else if (t.video && t.filme) {
-    midia = `<video class="filme" src="${t.video}" ${t.imagem ? `poster="${t.imagem}"` : ""} controls playsinline preload="none"></video>`;
-  } else if (t.video) {
-    midia = `<video src="${t.video}" ${t.imagem ? `poster="${t.imagem}"` : ""} muted loop playsinline preload="metadata"></video>`;
-  } else if (t.imagem) {
-    midia = `<img src="${t.imagem}" alt="${t.titulo}" loading="lazy">`;
-  } else {
-    midia = `<div class="vazio">+ material</div>`;
-  }
+function montarTrabalhos() {
+  observador.disconnect();
+  grade.innerHTML = "";
 
-  if (t.galeria) {
-    card.classList.add("card-galeria");
-    card.tabIndex = 0;
-    midia += `<span class="contador">▦ ${t.galeria.length} imagens</span>`;
-    const abrir = () => abrirLightbox(t.galeria.map((src, i) => ({ imagem: src, legenda: `${t.titulo} · ${i + 1}/${t.galeria.length}` })), 0);
-    card.addEventListener("click", abrir);
-    card.addEventListener("keydown", (e) => { if (e.key === "Enter") abrir(); });
-  }
+  TRABALHOS.forEach((t) => {
+    const titulo = campo(t, "titulo");
+    const card = document.createElement("article");
+    card.className = "card" + (t.falta ? " card-falta" : "");
+    card.dataset.categoria = t.categoria;
+    card.hidden = filtroAtual !== "todos" && t.categoria !== filtroAtual;
 
-  card.innerHTML = `
-    <div class="card-midia">${midia}</div>
-    <div class="card-info">
-      <span class="card-cat">${NOMES[t.categoria] || t.categoria}</span>
-      <h3>${t.titulo}</h3>
-      <p>${t.descricao}</p>
-      <ul class="chips">${t.ferramentas.map((f) => `<li>${f}</li>`).join("")}</ul>
-    </div>`;
-  grade.appendChild(card);
-});
+    let midia;
+    if (t.youtube) {
+      midia = `<iframe src="https://www.youtube-nocookie.com/embed/${t.youtube}" title="${titulo}" allowfullscreen loading="lazy"></iframe>`;
+    } else if (t.video && t.filme) {
+      midia = `<video class="filme" src="${t.video}" ${t.imagem ? `poster="${t.imagem}"` : ""} controls playsinline preload="none"></video>`;
+    } else if (t.video) {
+      midia = `<video src="${t.video}" ${t.imagem ? `poster="${t.imagem}"` : ""} muted loop playsinline preload="metadata"></video>`;
+    } else if (t.imagem) {
+      midia = `<img src="${t.imagem}" alt="${titulo}" loading="lazy">`;
+    } else {
+      midia = `<div class="vazio">+ material</div>`;
+    }
+
+    if (t.galeria) {
+      card.classList.add("card-galeria");
+      card.tabIndex = 0;
+      midia += `<span class="contador">▦ ${t.galeria.length} ${tr("imagens")}</span>`;
+      const abrir = () => abrirLightbox(t.galeria.map((src, i) => ({ imagem: src, legenda: `${titulo} · ${i + 1}/${t.galeria.length}` })), 0);
+      card.addEventListener("click", abrir);
+      card.addEventListener("keydown", (e) => { if (e.key === "Enter") abrir(); });
+    }
+
+    card.innerHTML = `
+      <div class="card-midia">${midia}</div>
+      <div class="card-info">
+        <span class="card-cat">${tr("cat." + t.categoria)}</span>
+        <h3>${titulo}</h3>
+        <p>${campo(t, "descricao")}</p>
+        <ul class="chips">${t.ferramentas.map((f) => `<li>${f}</li>`).join("")}</ul>
+      </div>`;
+    grade.appendChild(card);
+  });
+
+  grade.querySelectorAll("video:not(.filme)").forEach((v) => observador.observe(v));
+}
 
 // Slider do topo: passa pelos trabalhos prontos (sem "falta")
 const slider = document.getElementById("slider");
@@ -63,15 +81,25 @@ DESTAQUES.forEach((t, i) => {
     slide.innerHTML = `<video src="${t.video}" ${t.imagem ? `poster="${t.imagem}"` : ""} muted loop playsinline preload="${i === 0 ? "auto" : "none"}"></video>`;
   } else {
     const capa = t.imagem || `https://img.youtube.com/vi/${t.youtube}/hqdefault.jpg`;
-    slide.innerHTML = `<img src="${capa}" alt="${t.titulo}" ${i === 0 ? "" : 'loading="lazy"'}>`;
+    slide.innerHTML = `<img src="${capa}" alt="" ${i === 0 ? "" : 'loading="lazy"'}>`;
   }
   slidesBox.appendChild(slide);
 
   const ponto = document.createElement("button");
-  ponto.setAttribute("aria-label", t.titulo);
   ponto.addEventListener("click", () => irPara(i));
   pontos.appendChild(ponto);
 });
+
+// Textos do slider (legenda, nomes dos pontos e das imagens)
+function textosSlider() {
+  const t = DESTAQUES[slideAtual];
+  sliderLegenda.innerHTML = `<small>${tr("cat." + t.categoria)}</small>${campo(t, "titulo")}`;
+  pontos.querySelectorAll("button").forEach((p, n) => p.setAttribute("aria-label", campo(DESTAQUES[n], "titulo")));
+  slidesBox.querySelectorAll(".slide img").forEach((img) => {
+    const n = [...slidesBox.children].indexOf(img.parentElement);
+    img.alt = campo(DESTAQUES[n], "titulo");
+  });
+}
 
 function irPara(i) {
   slideAtual = (i + DESTAQUES.length) % DESTAQUES.length;
@@ -83,8 +111,7 @@ function irPara(i) {
     if (ativo) { v.currentTime = 0; v.play().catch(() => {}); } else v.pause();
   });
   pontos.querySelectorAll("button").forEach((p, n) => p.classList.toggle("ativo", n === slideAtual));
-  const t = DESTAQUES[slideAtual];
-  sliderLegenda.innerHTML = `<small>${NOMES[t.categoria] || t.categoria}</small>${t.titulo}`;
+  textosSlider();
   reiniciarTimer();
 }
 function reiniciarTimer() {
@@ -107,17 +134,6 @@ slider.addEventListener("touchend", (e) => {
   toqueX = null;
 });
 
-irPara(0);
-
-// Vídeos só tocam quando aparecem na tela (economiza bateria e dados)
-const observador = new IntersectionObserver((entradas) => {
-  entradas.forEach((e) => {
-    if (e.isIntersecting) e.target.play().catch(() => {});
-    else e.target.pause();
-  });
-}, { threshold: 0.3 });
-grade.querySelectorAll("video:not(.filme)").forEach((v) => observador.observe(v));
-
 // Filtros (botões de categorias sem nenhum trabalho ficam escondidos)
 document.querySelectorAll(".filtro").forEach((botao) => {
   const f = botao.dataset.filtro;
@@ -125,7 +141,7 @@ document.querySelectorAll(".filtro").forEach((botao) => {
   botao.addEventListener("click", () => {
     document.querySelectorAll(".filtro").forEach((b) => b.classList.remove("ativo"));
     botao.classList.add("ativo");
-    const f = botao.dataset.filtro;
+    filtroAtual = f;
     grade.querySelectorAll(".card").forEach((c) => {
       c.hidden = f !== "todos" && c.dataset.categoria !== f;
     });
@@ -135,13 +151,17 @@ document.querySelectorAll(".filtro").forEach((botao) => {
 // Galeria de bastidores
 const galeria = document.getElementById("galeria");
 
-BASTIDORES.forEach((b, i) => {
-  const botao = document.createElement("button");
-  botao.className = "foto";
-  botao.innerHTML = `<img src="${b.imagem}" alt="${b.legenda}" loading="lazy"><span>${b.legenda}</span>`;
-  botao.addEventListener("click", () => abrirLightbox(BASTIDORES, i));
-  galeria.appendChild(botao);
-});
+function montarBastidores() {
+  galeria.innerHTML = "";
+  const lista = BASTIDORES.map((b) => ({ imagem: b.imagem, legenda: campo(b, "legenda") }));
+  lista.forEach((b, i) => {
+    const botao = document.createElement("button");
+    botao.className = "foto";
+    botao.innerHTML = `<img src="${b.imagem}" alt="${b.legenda}" loading="lazy"><span>${b.legenda}</span>`;
+    botao.addEventListener("click", () => abrirLightbox(lista, i));
+    galeria.appendChild(botao);
+  });
+}
 
 // Lightbox (visualizador de imagens com setas)
 function mostrarFoto() {
@@ -182,3 +202,13 @@ menuBtn.addEventListener("click", () => {
 nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => nav.classList.remove("aberto")));
 
 document.getElementById("ano").textContent = new Date().getFullYear();
+
+// Troca de idioma: remonta o que vem de conteudo.js
+aoTrocarIdioma = () => {
+  montarTrabalhos();
+  montarBastidores();
+  textosSlider();
+  lightbox.hidden = true;
+};
+aplicarIdioma(idioma);
+irPara(0);

@@ -17,16 +17,28 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!--
+    Idiomas: o texto em português fica aqui no HTML. Elementos com data-i18n="chave"
+    têm a versão em inglês em js/idiomas.js (data-i18n-aria = mesma ideia para aria-label).
+  -->
 
   <header class="topo">
     <a href="#inicio" class="logo">DIAPE<span>_</span></a>
-    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false">☰</button>
     <nav class="nav">
-      <a href="#trabalhos">Trabalhos</a>
-      <a href="#streaming">Streaming</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#contato" class="nav-cta">Contato</a>
+      <a href="#trabalhos" data-i18n="nav.trabalhos">Trabalhos</a>
+      <a href="#streaming" data-i18n="nav.streaming">Streaming</a>
+      <a href="#sobre" data-i18n="nav.sobre">Sobre</a>
+      <a href="#contato" class="nav-cta" data-i18n="nav.contato">Contato</a>
     </nav>
+    <div class="idioma-troca" role="group" aria-label="Idioma / Language">
+      <button data-lang="pt" aria-label="Português" title="Português">
+        <svg viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" fill="#009c3b"/><path d="M14 2.5 25.5 10 14 17.5 2.5 10z" fill="#ffdf00"/><circle cx="14" cy="10" r="4.6" fill="#002776"/><path d="M9.6 9.1a9 9 0 0 1 8.8 2.2" stroke="#fff" stroke-width=".9" fill="none"/></svg>
+      </button>
+      <button data-lang="en" aria-label="English" title="English">
+        <svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0 60 40M60 0 0 40" stroke="#fff" stroke-width="8"/><path d="M0 0 60 40M60 0 0 40" stroke="#c8102e" stroke-width="3"/><path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="12"/><path d="M30 0v40M0 20h60" stroke="#c8102e" stroke-width="7"/></svg>
+      </button>
+    </div>
+    <button class="menu-btn" aria-label="Abrir menu" data-i18n-aria="menu" aria-expanded="false">☰</button>
   </header>
 
   <main>
@@ -35,18 +47,18 @@
       <div class="hero-texto">
         <p class="tag">// Nickname · Tio Diape</p>
         <h1><span class="nome">Pedro</span><br><span class="grad">Barbosa</span></h1>
-        <p class="hero-sub">Animação &amp; modelagem 3D · Técnico de streaming · Edição de vídeo</p>
+        <p class="hero-sub" data-i18n="hero.sub">Animação &amp; modelagem 3D · Técnico de streaming · Edição de vídeo</p>
         <div class="hero-botoes">
-          <a href="#trabalhos" class="btn btn-primario">▶ Ver trabalhos</a>
-          <a href="#contato" class="btn">Falar comigo</a>
+          <a href="#trabalhos" class="btn btn-primario" data-i18n="hero.ver">▶ Ver trabalhos</a>
+          <a href="#contato" class="btn" data-i18n="hero.falar">Falar comigo</a>
         </div>
       </div>
       <div class="hero-midia">
         <!-- Slider com os trabalhos de conteudo.js (montado em main.js) -->
-        <div class="moldura slider" id="slider" aria-roledescription="carrossel" aria-label="Trabalhos em destaque">
+        <div class="moldura slider" id="slider" aria-roledescription="carrossel" aria-label="Trabalhos em destaque" data-i18n-aria="slider">
           <div class="slides"></div>
-          <button class="seta anterior" aria-label="Trabalho anterior">‹</button>
-          <button class="seta proxima" aria-label="Próximo trabalho">›</button>
+          <button class="seta anterior" aria-label="Trabalho anterior" data-i18n-aria="slider.anterior">‹</button>
+          <button class="seta proxima" aria-label="Próximo trabalho" data-i18n-aria="slider.proxima">›</button>
           <span class="canto c1"></span><span class="canto c2"></span><span class="canto c3"></span><span class="canto c4"></span>
         </div>
         <div class="slider-rodape">
@@ -60,13 +72,13 @@
     <section id="trabalhos" class="secao">
       <div class="secao-titulo">
         <span class="num">01</span>
-        <h2>Trabalhos</h2>
+        <h2 data-i18n="trabalhos.titulo">Trabalhos</h2>
       </div>
       <div class="filtros" role="tablist">
-        <button class="filtro ativo" data-filtro="todos">Todos</button>
-        <button class="filtro" data-filtro="3d">3D</button>
-        <button class="filtro" data-filtro="transicao">Motion para live</button>
-        <button class="filtro" data-filtro="edicao">Edição</button>
+        <button class="filtro ativo" data-filtro="todos" data-i18n="filtro.todos">Todos</button>
+        <button class="filtro" data-filtro="3d" data-i18n="cat.3d">3D</button>
+        <button class="filtro" data-filtro="transicao" data-i18n="cat.transicao">Motion para live</button>
+        <button class="filtro" data-filtro="edicao" data-i18n="cat.edicao">Edição</button>
       </div>
       <div class="grade" id="grade-trabalhos"></div>
     </section>
@@ -75,9 +87,9 @@
     <section id="streaming" class="secao">
       <div class="secao-titulo">
         <span class="num">02</span>
-        <h2>Streaming &amp; bastidores</h2>
+        <h2 data-i18n="streaming.titulo">Streaming &amp; bastidores</h2>
       </div>
-      <p class="intro">
+      <p class="intro" data-i18n="streaming.intro">
         Configuro e opero transmissões ao vivo: OBS e Streamlabs, multistream, áudio,
         transições personalizadas, moderação de chat e bots para Twitch, YouTube, Kick,
         TikTok e Instagram.
@@ -87,11 +99,11 @@
           <video src="assets/streaming/festival.mp4" poster="assets/streaming/festival-capa.png" controls muted playsinline preload="none"></video>
         </div>
         <div class="destaque-texto">
-          <p class="tag">// ao vivo</p>
+          <p class="tag" data-i18n="festival.tag">// ao vivo</p>
           <h3>Brasília Game Festival 2026</h3>
-          <p>Operação técnica da transmissão do festival: operei a transmissão ao vivo do jogo Mario Kart Live para o telão.</p>
+          <p data-i18n="festival.texto">Operação técnica da transmissão do festival: operei a transmissão ao vivo do jogo Mario Kart Live para o telão.</p>
           <ul class="chips">
-            <li>OBS Studio</li><li>Multistream</li><li>Áudio</li><li>Cenas</li>
+            <li>OBS Studio</li><li>Multistream</li><li data-i18n="festival.audio">Áudio</li><li data-i18n="festival.cenas">Cenas</li>
           </ul>
         </div>
       </div>
@@ -102,63 +114,63 @@
     <section id="sobre" class="secao">
       <div class="secao-titulo">
         <span class="num">03</span>
-        <h2>Sobre</h2>
+        <h2 data-i18n="sobre.titulo">Sobre</h2>
       </div>
       <div class="sobre">
         <div class="sobre-foto">
           <img src="assets/foto-pedro.jpg" alt="Pedro Barbosa Rodrigues">
         </div>
         <div class="sobre-texto">
-          <p>
+          <p data-i18n="sobre.p1">
             Sou <strong>Pedro Barbosa</strong>, de Brasília, falo português, inglês e italiano, e sou formado em
             <strong>Jogos Digitais</strong> e <strong>Design de Animação</strong> pelo IESB.
           </p>
-          <p>
+          <p data-i18n="sobre.p2">
             Atuo em duas áreas distintas: como modelador de cenário 3D focado em cinematografia e motion graphics,
             construindo desde universos de fantasia ao futurismo distópico com modelagem hard surface e shaders;
             e como técnico de áudio e vídeo para transmissões ao vivo.
           </p>
-          <p>
+          <p data-i18n="sobre.p3">
             No streaming, minha paixão é aprimorar a interação entre o chat e o streamer, ajudando criadores
             a tornarem suas lives mais dinâmicas e envolventes.
           </p>
 
-          <h3 class="sub">Experiência</h3>
+          <h3 class="sub" data-i18n="exp.titulo">Experiência</h3>
           <ol class="linha-tempo">
-            <li><span class="quando">2026 – atual</span><strong>X1 Ltda</strong> · Brasília, DF</li>
+            <li><span class="quando" data-i18n="exp.atual">2026 – atual</span><strong>X1 Ltda</strong> · Brasília, DF</li>
             <li><span class="quando">2025 – 2026</span><strong>Estúdio Teorema</strong> · Fortaleza, CE</li>
             <li><span class="quando">2023 – 2024</span><strong>Tree House Studios</strong> · Brasília, DF
-              <small>Animação 2D e 3D, modelagem, rigging, edição de vídeo e transmissão de workshops.</small></li>
-            <li><span class="quando">2022</span><strong>Voluntariado</strong> · Itália</li>
+              <small data-i18n="exp.treehouse">Animação 2D e 3D, modelagem, rigging, edição de vídeo e transmissão de workshops.</small></li>
+            <li><span class="quando">2022</span><strong data-i18n="exp.voluntariado">Voluntariado</strong> · <span data-i18n="exp.italia">Itália</span></li>
           </ol>
         </div>
       </div>
 
-      <h3 class="sub">Atributos</h3>
+      <h3 class="sub" data-i18n="atributos.titulo">Atributos</h3>
       <!-- Programas: colunas verticais. Para mudar, troque o --n (altura) e o número em .valor -->
       <div class="colunas">
-        <div class="coluna" style="--n:100%"><span class="valor">100%</span><div class="tubo"><i></i></div><span class="nome">Blender</span><em>Avançado</em></div>
-        <div class="coluna" style="--n:90%"><span class="valor">90%</span><div class="tubo"><i></i></div><span class="nome">OBS / Streamlabs</span><em>Avançado</em></div>
-        <div class="coluna" style="--n:85%"><span class="valor">85%</span><div class="tubo"><i></i></div><span class="nome">Plataformas de live e bots</span><em>Avançado</em></div>
-        <div class="coluna" style="--n:60%"><span class="valor">60%</span><div class="tubo"><i></i></div><span class="nome">Maya</span><em>Intermediário</em></div>
-        <div class="coluna" style="--n:60%"><span class="valor">60%</span><div class="tubo"><i></i></div><span class="nome">Photoshop</span><em>Intermediário</em></div>
-        <div class="coluna" style="--n:35%"><span class="valor">35%</span><div class="tubo"><i></i></div><span class="nome">Premiere / After Effects</span><em>Básico</em></div>
+        <div class="coluna" style="--n:100%"><span class="valor">100%</span><div class="tubo"><i></i></div><span class="nome">Blender</span><em data-i18n="nivel.avancado">Avançado</em></div>
+        <div class="coluna" style="--n:90%"><span class="valor">90%</span><div class="tubo"><i></i></div><span class="nome">OBS / Streamlabs</span><em data-i18n="nivel.avancado">Avançado</em></div>
+        <div class="coluna" style="--n:85%"><span class="valor">85%</span><div class="tubo"><i></i></div><span class="nome" data-i18n="atributos.plataformas">Plataformas de live e bots</span><em data-i18n="nivel.avancado">Avançado</em></div>
+        <div class="coluna" style="--n:60%"><span class="valor">60%</span><div class="tubo"><i></i></div><span class="nome">Maya</span><em data-i18n="nivel.intermediario">Intermediário</em></div>
+        <div class="coluna" style="--n:60%"><span class="valor">60%</span><div class="tubo"><i></i></div><span class="nome">Photoshop</span><em data-i18n="nivel.intermediario">Intermediário</em></div>
+        <div class="coluna" style="--n:35%"><span class="valor">35%</span><div class="tubo"><i></i></div><span class="nome">Premiere / After Effects</span><em data-i18n="nivel.basico">Básico</em></div>
       </div>
 
-      <h3 class="sub">Idiomas</h3>
+      <h3 class="sub" data-i18n="idiomas.titulo">Idiomas</h3>
       <div class="idiomas">
-        <div class="idioma"><span>Português</span><div class="barra"><i style="--n:100%"></i></div><em>100%</em></div>
-        <div class="idioma"><span>Inglês</span><div class="barra"><i style="--n:80%"></i></div><em>80%</em></div>
-        <div class="idioma"><span>Italiano</span><div class="barra"><i style="--n:50%"></i></div><em>50%</em></div>
-        <div class="idioma"><span>Espanhol</span><div class="barra"><i style="--n:30%"></i></div><em>30%</em></div>
+        <div class="idioma"><span data-i18n="idiomas.pt">Português</span><div class="barra"><i style="--n:100%"></i></div><em>100%</em></div>
+        <div class="idioma"><span data-i18n="idiomas.en">Inglês</span><div class="barra"><i style="--n:80%"></i></div><em>80%</em></div>
+        <div class="idioma"><span data-i18n="idiomas.it">Italiano</span><div class="barra"><i style="--n:50%"></i></div><em>50%</em></div>
+        <div class="idioma"><span data-i18n="idiomas.es">Espanhol</span><div class="barra"><i style="--n:30%"></i></div><em>30%</em></div>
       </div>
     </section>
 
     <!-- CONTATO -->
     <section id="contato" class="secao contato">
       <p class="tag">// press start</p>
-      <h2>Bora criar algo juntos?</h2>
-      <p class="intro">Animação 3D, transições para live ou uma transmissão bem configurada: é só chamar.</p>
+      <h2 data-i18n="contato.titulo">Bora criar algo juntos?</h2>
+      <p class="intro" data-i18n="contato.intro">Animação 3D, transições para live ou uma transmissão bem configurada: é só chamar.</p>
       <a class="btn btn-primario btn-grande" href="mailto:barbosaprofepontat@gmail.com">barbosaprofepontat@gmail.com</a>
       <div class="redes">
         <a href="https://instagram.com/tiodiape" target="_blank" rel="noopener">Instagram · @tiodiape</a>
@@ -171,18 +183,19 @@
 
   <footer class="rodape">
     <p>© <span id="ano"></span> Pedro Barbosa Rodrigues · TioDiape</p>
-    <p class="aviso-ia">Este site foi configurado com o uso de IA. As artes e os materiais nele não tiveram uso de IA.</p>
+    <p class="aviso-ia" data-i18n="rodape.ia">Este site foi configurado com o uso de IA. As artes e os materiais nele não tiveram uso de IA.</p>
   </footer>
 
   <div class="lightbox" id="lightbox" hidden>
-    <button class="fechar" aria-label="Fechar">✕</button>
-    <button class="seta anterior" aria-label="Imagem anterior">‹</button>
-    <button class="seta proxima" aria-label="Próxima imagem">›</button>
+    <button class="fechar" aria-label="Fechar" data-i18n-aria="lb.fechar">✕</button>
+    <button class="seta anterior" aria-label="Imagem anterior" data-i18n-aria="lb.anterior">‹</button>
+    <button class="seta proxima" aria-label="Próxima imagem" data-i18n-aria="lb.proxima">›</button>
     <img alt="">
     <p class="lb-legenda"></p>
   </div>
 
   <script src="js/conteudo.js"></script>
+  <script src="js/idiomas.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
