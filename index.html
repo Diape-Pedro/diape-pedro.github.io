@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diape · Animação 3D e Streaming</title>
+  <meta name="description" content="Portfólio de Pedro Barbosa Rodrigues (TioDiape): animação e modelagem 3D, técnico de streaming e edição de vídeo.">
+  <meta property="og:title" content="Diape · Animação 3D e Streaming">
+  <meta property="og:description" content="Animação e modelagem 3D, técnico de streaming e edição de vídeo.">
+  <meta property="og:image" content="https://diape.com.br/assets/3d/besta.jpg">
+  <meta property="og:url" content="https://diape.com.br/">
+  <meta name="theme-color" content="#05041a">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2305041a'/><text x='16' y='23' font-family='Arial Black,Arial' font-weight='900' font-size='20' text-anchor='middle' fill='%231cc90f'>D</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <a href="#inicio" class="logo">DIAPE<span>_</span></a>
+    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <nav class="nav">
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#streaming">Streaming</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato" class="nav-cta">Contato</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- INÍCIO -->
+    <section id="inicio" class="hero">
+      <div class="hero-texto">
+        <p class="tag">// Nickname · Tio Diape</p>
+        <h1><span class="nome">Pedro</span><br><span class="grad">Barbosa</span></h1>
+        <p class="hero-sub">Animação &amp; modelagem 3D · Técnico de streaming · Edição de vídeo</p>
+        <div class="hero-botoes">
+          <a href="#trabalhos" class="btn btn-primario">▶ Ver trabalhos</a>
+          <a href="#contato" class="btn">Falar comigo</a>
+        </div>
+      </div>
+      <div class="hero-midia">
+        <!-- Slider com os trabalhos de conteudo.js (montado em main.js) -->
+        <div class="moldura slider" id="slider" aria-roledescription="carrossel" aria-label="Trabalhos em destaque">
+          <div class="slides"></div>
+          <button class="seta anterior" aria-label="Trabalho anterior">‹</button>
+          <button class="seta proxima" aria-label="Próximo trabalho">›</button>
+          <span class="canto c1"></span><span class="canto c2"></span><span class="canto c3"></span><span class="canto c4"></span>
+        </div>
+        <div class="slider-rodape">
+          <a href="#trabalhos" class="slider-legenda"></a>
+          <div class="pontos"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRABALHOS -->
+    <section id="trabalhos" class="secao">
+      <div class="secao-titulo">
+        <span class="num">01</span>
+        <h2>Trabalhos</h2>
+      </div>
+      <div class="filtros" role="tablist">
+        <button class="filtro ativo" data-filtro="todos">Todos</button>
+        <button class="filtro" data-filtro="3d">3D</button>
+        <button class="filtro" data-filtro="transicao">Motion para live</button>
+        <button class="filtro" data-filtro="edicao">Edição</button>
+      </div>
+      <div class="grade" id="grade-trabalhos"></div>
+    </section>
+
+    <!-- STREAMING -->
+    <section id="streaming" class="secao">
+      <div class="secao-titulo">
+        <span class="num">02</span>
+        <h2>Streaming &amp; bastidores</h2>
+      </div>
+      <p class="intro">
+        Configuro e opero transmissões ao vivo: OBS e Streamlabs, multistream, áudio,
+        transições personalizadas, moderação de chat e bots para Twitch, YouTube, Kick,
+        TikTok e Instagram.
+      </p>
+      <div class="streaming-destaque">
+        <div class="video-vertical">
+          <video src="assets/streaming/festival.mp4" poster="assets/streaming/festival-capa.png" controls muted playsinline preload="none"></video>
+        </div>
+        <div class="destaque-texto">
+          <p class="tag">// ao vivo</p>
+          <h3>Brasília Game Festival 2026</h3>
+          <p>Operação técnica da transmissão do festival: operei a transmissão ao vivo do jogo Mario Kart Live para o telão.</p>
+          <ul class="chips">
+            <li>OBS Studio</li><li>Multistream</li><li>Áudio</li><li>Cenas</li>
+          </ul>
+        </div>
+      </div>
+      <div class="galeria" id="galeria"></div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="secao">
+      <div class="secao-titulo">
+        <span class="num">03</span>
+        <h2>Sobre</h2>
+      </div>
+      <div class="sobre">
+        <div class="sobre-foto">
+          <img src="assets/foto-pedro.jpg" alt="Pedro Barbosa Rodrigues">
+        </div>
+        <div class="sobre-texto">
+          <p>
+            Sou <strong>Pedro Barbosa</strong>, de Brasília, falo português, inglês e italiano, e sou formado em
+            <strong>Jogos Digitais</strong> e <strong>Design de Animação</strong> pelo IESB.
+          </p>
+          <p>
+            Atuo em duas áreas distintas: como modelador de cenário 3D focado em cinematografia e motion graphics,
+            construindo desde universos de fantasia ao futurismo distópico com modelagem hard surface e shaders;
+            e como técnico de áudio e vídeo para transmissões ao vivo.
+          </p>
+          <p>
+            No streaming, minha paixão é aprimorar a interação entre o chat e o streamer, ajudando criadores
+            a tornarem suas lives mais dinâmicas e envolventes.
+          </p>
+
+          <h3 class="sub">Experiência</h3>
+          <ol class="linha-tempo">
+            <li><span class="quando">2026 – atual</span><strong>X1 Ltda</strong> · Brasília, DF</li>
+            <li><span class="quando">2025 – 2026</span><strong>Estúdio Teorema</strong> · Fortaleza, CE</li>
+            <li><span class="quando">2023 – 2024</span><strong>Tree House Studios</strong> · Brasília, DF
+              <small>Animação 2D e 3D, modelagem, rigging, edição de vídeo e transmissão de workshops.</small></li>
+            <li><span class="quando">2022</span><strong>Voluntariado</strong> · Itália</li>
+          </ol>
+        </div>
+      </div>
+
+      <h3 class="sub">Atributos</h3>
+      <!-- Programas: colunas verticais. Para mudar, troque o --n (altura) e o número em .valor -->
+      <div class="colunas">
+        <div class="coluna" style="--n:100%"><span class="valor">100%</span><div class="tubo"><i></i></div><span class="nome">Blender</span><em>Avançado</em></div>
+        <div class="coluna" style="--n:90%"><span class="valor">90%</span><div class="tubo"><i></i></div><span class="nome">OBS / Streamlabs</span><em>Avançado</em></div>
+        <div class="coluna" style="--n:85%"><span class="valor">85%</span><div class="tubo"><i></i></div><span class="nome">Plataformas de live e bots</span><em>Avançado</em></div>
+        <div class="coluna" style="--n:60%"><span class="valor">60%</span><div class="tubo"><i></i></div><span class="nome">Maya</span><em>Intermediário</em></div>
+        <div class="coluna" style="--n:60%"><span class="valor">60%</span><div class="tubo"><i></i></div><span class="nome">Photoshop</span><em>Intermediário</em></div>
+        <div class="coluna" style="--n:35%"><span class="valor">35%</span><div class="tubo"><i></i></div><span class="nome">Premiere / After Effects</span><em>Básico</em></div>
+      </div>
+
+      <h3 class="sub">Idiomas</h3>
+      <div class="idiomas">
+        <div class="idioma"><span>Português</span><div class="barra"><i style="--n:100%"></i></div><em>100%</em></div>
+        <div class="idioma"><span>Inglês</span><div class="barra"><i style="--n:80%"></i></div><em>80%</em></div>
+        <div class="idioma"><span>Italiano</span><div class="barra"><i style="--n:50%"></i></div><em>50%</em></div>
+        <div class="idioma"><span>Espanhol</span><div class="barra"><i style="--n:30%"></i></div><em>30%</em></div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="secao contato">
+      <p class="tag">// press start</p>
+      <h2>Bora criar algo juntos?</h2>
+      <p class="intro">Animação 3D, transições para live ou uma transmissão bem configurada: é só chamar.</p>
+      <a class="btn btn-primario btn-grande" href="mailto:barbosaprofepontat@gmail.com">barbosaprofepontat@gmail.com</a>
+      <div class="redes">
+        <a href="https://instagram.com/tiodiape" target="_blank" rel="noopener">Instagram · @tiodiape</a>
+        <a href="https://youtube.com/@tiodiape" target="_blank" rel="noopener">YouTube · Tiodiape</a>
+        <a href="https://www.twitch.tv/tiodiape" target="_blank" rel="noopener">Twitch · tiodiape</a>      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>© <span id="ano"></span> Pedro Barbosa Rodrigues · TioDiape</p>
+    <p class="aviso-ia">Este site foi configurado com o uso de IA. As artes e os materiais nele não tiveram uso de IA.</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="fechar" aria-label="Fechar">✕</button>
+    <button class="seta anterior" aria-label="Imagem anterior">‹</button>
+    <button class="seta proxima" aria-label="Próxima imagem">›</button>
+    <img alt="">
+    <p class="lb-legenda"></p>
+  </div>
+
+  <script src="js/conteudo.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
