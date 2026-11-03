@@ -72,6 +72,7 @@ const DESTAQUES = TRABALHOS.filter((t) => !t.falta && (t.video || t.imagem || t.
 const TEMPO_SLIDE = 6000;
 const semAnimacao = matchMedia("(prefers-reduced-motion: reduce)").matches;
 let slideAtual = 0;
+if (semAnimacao) document.querySelector(".fundo-animado video").pause();
 let timer;
 
 DESTAQUES.forEach((t, i) => {
