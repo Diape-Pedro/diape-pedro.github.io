@@ -57,7 +57,7 @@ const TRABALHOS = [
   },
   {
     titulo: "Besta estilizada",
-    titulo_en: "Stylized beast",
+    titulo_en: "Stylized Crossbow",
     categoria: "3d",
     descricao: "Modelagem hard surface com shader cartoon e detalhes em neon.",
     descricao_en: "Hard-surface modeling with a cartoon shader and neon details.",

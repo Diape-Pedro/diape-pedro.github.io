@@ -32,7 +32,7 @@ const TEXTOS = {
     "slider.anterior": "Previous project",
     "slider.proxima": "Next project",
 
-    "trabalhos.titulo": "Work",
+    "trabalhos.titulo": "Work in Blender",
     "filtro.todos": "All",
     "cat.3d": "3D",
     "cat.transicao": "Motion for live",
