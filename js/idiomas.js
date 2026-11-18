@@ -40,9 +40,9 @@ const TEXTOS = {
     imagens: "images",
 
     "streaming.titulo": "Streaming &amp; behind the scenes",
-    "streaming.intro": "I set up and run live broadcasts: OBS and Streamlabs, multistreaming, audio, custom transitions, chat moderation and bots for Twitch, YouTube, Kick, TikTok and Instagram.",
+    "streaming.intro": "Planning, coordination, setup and technical operation of live broadcasts, from the studio to on-site events. I work with OBS Studio and Streamlabs, multistreaming, audio mixing, custom transitions, chat moderation and bots for Twitch, YouTube, Kick, TikTok and Instagram.",
     "festival.tag": "// live",
-    "festival.texto": "Technical operation of the festival broadcast: I ran the live feed of the Mario Kart Live game to the big screen.",
+    "festival.texto": "Technical operation of the festival's live broadcast, with real-time display of the Mario Kart Live matches on the event's big screen.",
     "festival.audio": "Audio",
     "festival.cenas": "Scenes",
 
