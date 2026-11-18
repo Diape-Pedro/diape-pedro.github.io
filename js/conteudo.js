@@ -56,6 +56,16 @@ const TRABALHOS = [
     ],
   },
   {
+    titulo: "X1 Arena 14 e 15",
+    titulo_en: "X1 Arena 14 & 15",
+    categoria: "transicao",
+    descricao: "Abertura das transmissões da X1 Arena, em parceria com o Metrópoles: logo 3D cromado animado quadro a quadro e transição de cena com glitch.",
+    descricao_en: "Opening for the X1 Arena broadcasts, in partnership with Metrópoles: a frame-by-frame animated chrome 3D logo and a glitch scene transition.",
+    ferramentas: ["Blender", "DaVinci Resolve"],
+    video: "assets/3d/x1-arena.mp4",
+    imagem: "assets/3d/x1-arena.jpg",
+  },
+  {
     titulo: "Besta estilizada",
     titulo_en: "Stylized Crossbow",
     categoria: "3d",
@@ -150,9 +160,12 @@ const TRABALHOS = [
 
 /* Fotos e vídeos de bastidores das transmissões (legenda_en = legenda em inglês) */
 const BASTIDORES = [
-  { imagem: "assets/streaming/ilha-edicao.jpg", legenda: "Ilha de edição durante gravação", legenda_en: "Editing station during a shoot" },
-  { imagem: "assets/streaming/cabine.jpg", legenda: "Cabine de transmissão com tratamento acústico", legenda_en: "Acoustically treated broadcast booth" },
-  { imagem: "assets/streaming/mesa-controle.jpg", legenda: "Na mesa de controle", legenda_en: "At the control desk" },
-  { imagem: "assets/streaming/camera-entrevista.jpg", legenda: "Enquadramento de entrevista", legenda_en: "Framing an interview" },
-  { imagem: "assets/streaming/rig-bateria.jpg", legenda: "Montagem de câmera para gravação de bateria", legenda_en: "Camera rig for a drum recording" },
+  { imagem: "assets/streaming/x1-arena-1.jpg", legenda: "Coordenação técnica da transmissão · X1 Arena, em parceria com o Metrópoles", legenda_en: "Broadcast technical coordination · X1 Arena, in partnership with Metrópoles" },
+  { imagem: "assets/streaming/x1-arena-2.jpg", legenda: "Bastidores da X1 Arena com Juan, colega de equipe", legenda_en: "Behind the scenes at X1 Arena with teammate Juan" },
+  { imagem: "assets/streaming/x1-arena-3.jpg", legenda: "Montagem e preparação do palco para a transmissão · X1 Arena", legenda_en: "Stage setup and preparation for the broadcast · X1 Arena" },
+  { imagem: "assets/streaming/ilha-edicao.jpg", legenda: "Edição em tempo real durante a gravação", legenda_en: "Real-time editing during a recording" },
+  { imagem: "assets/streaming/cabine.jpg", legenda: "Operação técnica em cabine com tratamento acústico", legenda_en: "Technical operation in an acoustically treated booth" },
+  { imagem: "assets/streaming/mesa-controle.jpg", legenda: "Operação da mesa de controle de áudio e vídeo", legenda_en: "Running the audio and video control desk" },
+  { imagem: "assets/streaming/camera-entrevista.jpg", legenda: "Ajuste de foco e enquadramento para entrevista", legenda_en: "Focus and framing setup for an interview" },
+  { imagem: "assets/streaming/rig-bateria.jpg", legenda: "Montagem de suporte de câmera para gravação de bateria", legenda_en: "Camera mount setup for a drum recording" },
 ];

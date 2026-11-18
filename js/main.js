@@ -70,9 +70,9 @@ const pontos = document.querySelector(".pontos");
 const sliderLegenda = document.querySelector(".slider-legenda");
 const DESTAQUES = TRABALHOS.filter((t) => !t.falta && (t.video || t.imagem || t.youtube));
 const TEMPO_SLIDE = 6000;
-const semAnimacao = matchMedia("(prefers-reduced-motion: reduce)").matches;
+// "Reduzir movimento" ligado no sistema: tudo começa parado (a pessoa pode ativar pelo aviso)
+let semAnimacao = matchMedia("(prefers-reduced-motion: reduce)").matches;
 let slideAtual = 0;
-if (semAnimacao) document.querySelector(".fundo-animado video").pause();
 let timer;
 
 DESTAQUES.forEach((t, i) => {
@@ -213,3 +213,51 @@ aoTrocarIdioma = () => {
 };
 aplicarIdioma(idioma);
 irPara(0);
+
+// Fundo animado + aviso para ativar as animações quando ele não toca
+// (sistema com "reduzir movimento" ligado, modo economia de bateria etc.)
+const fundo = document.querySelector(".fundo-animado video");
+const aviso = document.getElementById("aviso-animacao");
+
+function lerEscolha() {
+  try { return localStorage.getItem("animacoes"); } catch (e) { return null; }
+}
+function salvarEscolha(valor) {
+  try { localStorage.setItem("animacoes", valor); } catch (e) {}
+}
+
+function ativarAnimacoes() {
+  semAnimacao = false;
+  document.documentElement.classList.add("animacoes-ativas");
+  reiniciarTimer();
+  return fundo.play();
+}
+
+function perguntar() {
+  if (lerEscolha() === "nao") return;
+  aviso.hidden = false;
+}
+
+aviso.querySelectorAll("button").forEach((b) =>
+  b.addEventListener("click", () => {
+    aviso.hidden = true;
+    salvarEscolha(b.dataset.resposta);
+    if (b.dataset.resposta === "sim") ativarAnimacoes().catch(() => {});
+  })
+);
+
+// Tenta tocar o fundo; se o navegador recusar (economia de bateria etc.), pergunta
+function tocarFundo() {
+  if (semAnimacao || document.hidden) return;
+  fundo.play().catch((e) => e.name === "NotAllowedError" && perguntar());
+}
+// Abas em segundo plano pausam vídeos: ao voltar para a aba, retoma
+document.addEventListener("visibilitychange", tocarFundo);
+
+if (semAnimacao) {
+  fundo.pause();
+  if (lerEscolha() === "sim") ativarAnimacoes().catch(() => {});
+  else perguntar();
+} else {
+  tocarFundo();
+}

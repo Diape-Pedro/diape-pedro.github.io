@@ -74,6 +74,10 @@ const TEXTOS = {
     "lb.fechar": "Close",
     "lb.anterior": "Previous image",
     "lb.proxima": "Next image",
+
+    "animacao.pergunta": "The site's animations are paused on your device. Would you like to turn them on?",
+    "animacao.sim": "Turn on animations",
+    "animacao.nao": "Not now",
   },
   // O português vem do HTML; aqui só o que não está escrito na página
   pt: {

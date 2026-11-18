@@ -191,6 +191,15 @@
     <p class="aviso-ia" data-i18n="rodape.ia">Este site foi configurado com o uso de IA. As artes e os materiais nele não tiveram uso de IA.</p>
   </footer>
 
+  <!-- Aviso que aparece quando o fundo animado não consegue tocar (main.js) -->
+  <div class="aviso-animacao" id="aviso-animacao" role="dialog" aria-labelledby="aviso-animacao-texto" hidden>
+    <p id="aviso-animacao-texto" data-i18n="animacao.pergunta">As animações do site estão pausadas no seu dispositivo. Gostaria de ativá-las?</p>
+    <div class="aviso-botoes">
+      <button class="btn btn-primario" data-resposta="sim" data-i18n="animacao.sim">Ativar animações</button>
+      <button class="btn" data-resposta="nao" data-i18n="animacao.nao">Agora não</button>
+    </div>
+  </div>
+
   <div class="lightbox" id="lightbox" hidden>
     <button class="fechar" aria-label="Fechar" data-i18n-aria="lb.fechar">✕</button>
     <button class="seta anterior" aria-label="Imagem anterior" data-i18n-aria="lb.anterior">‹</button>
