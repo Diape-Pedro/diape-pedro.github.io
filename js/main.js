@@ -136,11 +136,11 @@ slider.addEventListener("touchend", (e) => {
 });
 
 // Filtros (botões de categorias sem nenhum trabalho ficam escondidos)
-document.querySelectorAll(".filtro").forEach((botao) => {
+document.querySelectorAll(".filtros .filtro").forEach((botao) => {
   const f = botao.dataset.filtro;
   if (f !== "todos" && !TRABALHOS.some((t) => t.categoria === f)) botao.hidden = true;
   botao.addEventListener("click", () => {
-    document.querySelectorAll(".filtro").forEach((b) => b.classList.remove("ativo"));
+    document.querySelectorAll(".filtros .filtro").forEach((b) => b.classList.remove("ativo"));
     botao.classList.add("ativo");
     filtroAtual = f;
     grade.querySelectorAll(".card").forEach((c) => {
@@ -148,6 +148,58 @@ document.querySelectorAll(".filtro").forEach((botao) => {
     });
   });
 });
+
+// Slider dos destaques de streaming (abas, setas, pontos, arrastar e troca automática)
+const ss = document.getElementById("slider-streaming");
+const ssTrilho = ss.querySelector(".ss-trilho");
+const ssSlides = [...ssTrilho.children];
+const ssAbas = [...ss.querySelectorAll(".ss-abas button")];
+const ssPontos = ss.querySelector(".ss-pontos");
+const TEMPO_SS = 8000;
+let ssAtual = 0;
+let ssTimer;
+
+ssSlides.forEach((_, i) => {
+  const p = document.createElement("button");
+  p.setAttribute("aria-label", ssAbas[i] ? ssAbas[i].textContent : String(i + 1));
+  p.addEventListener("click", () => ssIr(i));
+  ssPontos.appendChild(p);
+});
+ssAbas.forEach((a, i) => a.addEventListener("click", () => ssIr(i)));
+
+function ssIr(i) {
+  ssAtual = (i + ssSlides.length) % ssSlides.length;
+  ssTrilho.style.transform = `translateX(-${ssAtual * 100}%)`;
+  ssSlides.forEach((s, n) => {
+    s.setAttribute("aria-hidden", n !== ssAtual);
+    s.inert = n !== ssAtual;
+    if (n !== ssAtual) s.querySelectorAll("video").forEach((v) => v.pause());
+  });
+  ssAbas.forEach((a, n) => a.classList.toggle("ativo", n === ssAtual));
+  ssPontos.querySelectorAll("button").forEach((p, n) => p.classList.toggle("ativo", n === ssAtual));
+  ssReiniciar();
+}
+function ssReiniciar() {
+  clearInterval(ssTimer);
+  if (semAnimacao) return;
+  ssTimer = setInterval(() => {
+    // não troca enquanto o mouse está em cima ou algum vídeo do slider está tocando
+    if (ss.matches(":hover") || ss.contains(document.activeElement) || [...ss.querySelectorAll("video")].some((v) => !v.paused)) return;
+    ssIr(ssAtual + 1);
+  }, TEMPO_SS);
+}
+
+ss.querySelector(".anterior").addEventListener("click", () => ssIr(ssAtual - 1));
+ss.querySelector(".proxima").addEventListener("click", () => ssIr(ssAtual + 1));
+let ssToqueX = null;
+ssTrilho.addEventListener("touchstart", (e) => (ssToqueX = e.touches[0].clientX), { passive: true });
+ssTrilho.addEventListener("touchend", (e) => {
+  if (ssToqueX === null) return;
+  const dx = e.changedTouches[0].clientX - ssToqueX;
+  if (Math.abs(dx) > 40) ssIr(ssAtual + (dx < 0 ? 1 : -1));
+  ssToqueX = null;
+});
+ssIr(0);
 
 // Galeria de bastidores
 const galeria = document.getElementById("galeria");
@@ -230,6 +282,7 @@ function ativarAnimacoes() {
   semAnimacao = false;
   document.documentElement.classList.add("animacoes-ativas");
   reiniciarTimer();
+  ssReiniciar();
   return fundo.play();
 }
 

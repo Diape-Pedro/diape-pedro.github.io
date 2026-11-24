@@ -195,6 +195,18 @@ h1, h2, h3 { font-family: var(--titulo); line-height: 1.1; }
 .destaque-texto h3 { font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 12px; }
 .destaque-texto p { color: var(--texto-2); }
 
+/* Slider dos destaques de streaming */
+.ss { margin-bottom: 32px; }
+.ss-abas { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.ss-area { position: relative; }
+.ss-janela { overflow: hidden; border-radius: 6px; }
+.ss-trilho { display: flex; transition: transform .5s ease; touch-action: pan-y; }
+.ss-trilho > .streaming-destaque { flex: 0 0 100%; min-width: 0; margin-bottom: 0; }
+.ss .seta { width: 40px; height: 56px; font-size: 1.8rem; }
+.ss .anterior { left: -20px; }
+.ss .proxima { right: -20px; }
+.ss-pontos { justify-content: center; margin-top: 16px; }
+
 /* Post no estilo do Instagram (modo escuro do app) */
 .destaque-insta { grid-template-columns: minmax(260px, 380px) 1fr; }
 .post-insta {
@@ -325,6 +337,8 @@ h1, h2, h3 { font-family: var(--titulo); line-height: 1.1; }
   .streaming-destaque, .sobre { grid-template-columns: 1fr; }
   .video-vertical { max-width: 300px; margin: 0 auto; }
   .post-insta { width: 100%; max-width: 380px; margin: 0 auto; }
+  .ss .seta { display: none; }
+  .ss-abas .filtro { flex: 1 1 auto; padding: 8px 12px; font-size: .85rem; }
   .galeria { grid-template-columns: repeat(2, 1fr); }
   .colunas { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 16px; }
   .tubo { height: 160px; }
