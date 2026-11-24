@@ -45,6 +45,13 @@ const TEXTOS = {
     "festival.texto": "Technical operation of the festival's live broadcast, with real-time display of the Mario Kart Live matches on the event's big screen.",
     "festival.audio": "Audio",
     "festival.cenas": "Scenes",
+    "insta.ver": "See the Metrópoles Games post on Instagram",
+    "insta.legenda": "X1 Arena at Brasília Game Hub, in partnership with Metrópoles.",
+    "insta.link": "View on Instagram ↗",
+    "insta.tag": "// in the media",
+    "insta.texto": "Technical operation of the X1 Arena live broadcast, in partnership with Metrópoles, featured by the Metrópoles Games profile on Instagram.",
+    "insta.chip1": "Coordination",
+    "insta.chip2": "Live broadcast",
 
     "sobre.titulo": "About",
     "sobre.p1": "I'm <strong>Pedro Barbosa</strong>, from Brasília, Brazil. I speak Portuguese, English and Italian, and I hold degrees in <strong>Digital Games</strong> and <strong>Animation Design</strong> from IESB.",
